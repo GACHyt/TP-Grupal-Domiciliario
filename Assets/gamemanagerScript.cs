@@ -9,12 +9,9 @@ public class gamemanagerScript : MonoBehaviour
     public Transform spawnPoint1;
     public Transform spawnPoint2;
 
-    //pase el array de productos para productoScript
-
     public int dinero=100;
 
     public GameObject[] productos;
-   
 
     GameObject objeto1;
     GameObject objeto2;
@@ -22,6 +19,9 @@ public class gamemanagerScript : MonoBehaviour
     public Text presu;
     public Text precioUno;
     public Text precioDos;
+
+    public GameObject panel;
+    public Text result;
 
     private int sumaProductos;
 
@@ -40,5 +40,64 @@ public class gamemanagerScript : MonoBehaviour
         precioDos.text = $"${precio2}";
     }
 
+    void chequeo(int a)
+    { 
+        panel.SetActive(true);
+        if (a == 1)
+        {
+            if (dinero > sumaProductos)
+            {
+                result.color=Color.green;
+                result.text = "Ganaste";
+            }
+            else
+            {
+                result.color = Color.red;
+                result.text = "Perdiste";
+            }
+        }
+        else if (a == 2)
+        {
+            if (dinero == sumaProductos)
+            {
+                result.color = Color.green;
+                result.text = "Ganaste";
+            }
+            else
+            {
+                result.color = Color.red;
+                result.text = "Perdiste";
+            }
+        }
+        else if (a == 3)
+        {
+            if (dinero < sumaProductos)
+            {
+                result.color = Color.green;
+                result.text = "Ganaste";
+            }
+            else
+            {
+                result.color = Color.red;
+                result.text = "Perdiste";
+            }
+        }
+    }
+
+    public void alcanzaYsobra()
+    {
+        Debug.Log("Sobra");
+        chequeo(1);
+    }
+
+    public void alcanza()
+    {
+        Debug.Log("eee");
+        chequeo(2);
+    }
     
+    public void noAlcanza()
+    {
+        chequeo(3);
+    }
 }

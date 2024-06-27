@@ -44,9 +44,9 @@ public class gamemanagerScript : MonoBehaviour
         int precio1= objeto1.GetComponent<productoScript>().precio;
         int precio2 = objeto2.GetComponent<productoScript>().precio;
 
-        presu.text = $"Presupuesto: ${dinero}";
-        precioUno.text = $"${precio1}";
-        precioDos.text = $"${precio2}";
+        presu.text += $"Presupuesto: ${dinero}";
+        precioUno.text += $"${precio1}";
+        precioDos.text += $"${precio2}";
     }
 
     void Update()

@@ -34,8 +34,12 @@ public class gamemanagerScript : MonoBehaviour
         obj1.SetActive(true);
         obj2 = productosGenerator2[Random.Range(0, productosGenerator2.Length)];
         obj2.SetActive(true);
+       
         objeto1 = Instantiate(obj1, spawnPoint1.position, Quaternion.identity);// corregir bien el tema  de como crear/activar el objeto
+        objeto1.transform.localScale = new Vector3(10, 10, 10);
+
         objeto2 = Instantiate(obj2, spawnPoint2.position, Quaternion.identity);
+        objeto2.transform.localScale = new Vector3(10, 10, 10);
 
         int precio1= objeto1.GetComponent<productoScript>().precio;
         int precio2 = objeto2.GetComponent<productoScript>().precio;

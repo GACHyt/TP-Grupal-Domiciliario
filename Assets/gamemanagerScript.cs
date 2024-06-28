@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class gamemanagerScript : MonoBehaviour
 {
@@ -21,16 +22,23 @@ public class gamemanagerScript : MonoBehaviour
     public Text precioDos;
 
     public GameObject panel;
+    public GameObject boton;
     public Text result;
 
     private int sumaProductos;
 
     void Start()
     {
+        juego(); 
+    }
+
+    void juego()
+    {
+        panel.SetActive(false);
         objeto1 = Instantiate(productos[Random.Range(0, productos.Length)], spawnPoint1.position, Quaternion.identity);// corregir bien el tema  de como crear/activar el objeto
         objeto2 = Instantiate(productos[Random.Range(0, productos.Length)], spawnPoint2.position, Quaternion.identity);
-       
-        int precio1= objeto1.GetComponent<productoScript>().precio;
+
+        int precio1 = objeto1.GetComponent<productoScript>().precio;
         int precio2 = objeto2.GetComponent<productoScript>().precio;
 
         sumaProductos = precio1 + precio2;
@@ -47,26 +55,23 @@ public class gamemanagerScript : MonoBehaviour
         {
             if (dinero > sumaProductos)
             {
-                result.color=Color.green;
-                result.text = "Ganaste";
+                ganaste();
             }
             else
             {
-                result.color = Color.red;
-                result.text = "Perdiste";
+                perdiste();
+
             }
         }
         else if (a == 2)
         {
             if (dinero == sumaProductos)
             {
-                result.color = Color.green;
-                result.text = "Ganaste";
+                ganaste();
             }
             else
             {
-                result.color = Color.red;
-                result.text = "Perdiste";
+                perdiste();
             }
         }
         else if (a == 3)
@@ -78,8 +83,7 @@ public class gamemanagerScript : MonoBehaviour
             }
             else
             {
-                result.color = Color.red;
-                result.text = "Perdiste";
+                perdiste();
             }
         }
     }
@@ -100,4 +104,39 @@ public class gamemanagerScript : MonoBehaviour
     {
         chequeo(3);
     }
+
+    void perdiste()
+    {
+        result.color = Color.red;
+        result.text = "Perdiste";
+    }
+
+    public void intentar2()
+    {
+        panel.SetActive(false);
+    }
+
+   public void salir()
+    {
+        SceneManager.LoadScene("SeleccionarJuegos");
+    }
+
+    public void jugar2()
+    {
+        objeto1.SetActive(false);
+        objeto2.SetActive(false);
+        boton.SetActive(true);
+        juego();
+    }
+
+    void ganaste()
+    {
+        boton.SetActive(false);
+        result.text = "Ganaste";
+        result.color = Color.green;
+    }
+
+
+
+
 }

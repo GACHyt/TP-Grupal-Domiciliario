@@ -9,13 +9,11 @@ public class gamemanagerScript : MonoBehaviour
 {
     public Transform spawnPoint1;
     public Transform spawnPoint2;
-
-    public int dinero=100;
-
     public GameObject[] productos;
-
     GameObject objeto1;
     GameObject objeto2;
+
+    public int dinero=100;
 
     public Text presu;
     public Text precioUno;
@@ -78,8 +76,7 @@ public class gamemanagerScript : MonoBehaviour
         {
             if (dinero < sumaProductos)
             {
-                result.color = Color.green;
-                result.text = "Ganaste";
+                ganaste();
             }
             else
             {
@@ -118,7 +115,7 @@ public class gamemanagerScript : MonoBehaviour
 
    public void salir()
     {
-        SceneManager.LoadScene("SeleccionarJuegos");
+        SceneManager.LoadScene(1);
     }
 
     public void jugar2()

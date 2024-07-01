@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+//Me borraron mis comits
+
 public class gamemanagerScript : MonoBehaviour
 {
     public Transform spawnPoint1;
